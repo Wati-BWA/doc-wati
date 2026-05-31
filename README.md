@@ -106,6 +106,15 @@ Un sistema **IoT + Multi-Agente IA** que:
 
 ---
 
+## 🎬 Presentación del Proyecto
+
+| Recurso | Enlace |
+|---|---|
+| 📹 **Video Demo** | [Ver en YouTube](https://youtu.be/mBegla976Sc?si=1I1hYbE17-TbQvbs) |
+| 📊 **Diapositivas** | [Ver en Google Slides](https://docs.google.com/presentation/d/13e7P1GaNOpwQ4T-ee_OA7gMHKZLiDnhIkDl88LuQcbI/edit?usp=sharing) |
+
+---
+
 ## 🏗️ Arquitectura del Sistema
 
 ```
@@ -202,8 +211,6 @@ El sistema **Wati** ha sido diseñado bajo una arquitectura distribuida y escala
 
 - **Plataforma Web Admin & Monitoreo**: `React` (JavaScript/Vite) combinado con dashboards visuales interactivos y analíticos en `Looker Studio` para administración a escala de la flota IoT.
 - **Autenticación y Seguridad**: `Firebase Auth` con JSON Web Tokens (JWT) y cifrado de extremo a extremo, garantizando la privacidad de los datos de consumo de los usuarios.
-
----
 
 ---
 
