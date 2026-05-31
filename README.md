@@ -45,7 +45,7 @@ Cada uno de estos repositorios tiene su propio README con el detalle del compone
 
 ## 🎯 El Problema
 
-Santa Cruz de la Sierra es la ciudad más calurosa de Bolivia (hasta 38°C). CRE R.L., con **300,000 socios activos**, aplica una estructura tarifaria **escalonada**: cuanto más consumís en el mes, más caro pagás por kWh.
+Santa Cruz de la Sierra es la ciudad más calurosa de Bolivia (hasta 34°C). CRE R.L., con **500,000 socios activos**, aplica una estructura tarifaria **escalonada**: cuanto más consumís en el mes, más caro pagás por kWh.
 
 **El problema:** ningún usuario sabe en qué bloque tarifario está *durante* el mes, y nadie les avisa antes de que su factura suba al siguiente umbral más caro.
 
@@ -99,7 +99,6 @@ Un sistema **IoT + Multi-Agente IA** que:
 - 🧠 **Proyecta tu factura** al cierre del mes con error < 10%
 - ⚠️ **Te alerta** antes de cruzar un umbral tarifario más caro
 - 🌡️ **Correlaciona** el consumo con el pronóstico climático local
-- 🌀 **Controla automáticamente** el AC (apagado por ausencia, ajuste de temperatura)
 - 📱 **Notifica** en lenguaje natural con recomendaciones accionables
 
 **Ahorro estimado: 15–30% de la factura mensual** sin sacrificar confort.
@@ -183,11 +182,7 @@ El sistema **Wati** ha sido diseñado bajo una arquitectura distribuida y escala
 - **Microcontrolador principal**: `ESP32-S3` (MCU Dual-Core a 240MHz con aceleración de IA nativa y conectividad Wi-Fi/BLE).
 
 - **Entorno de desarrollo**: `C++ (Arduino Framework / ESP-IDF)` para garantizar control a bajo nivel, optimización de memoria y gestión eficiente de hilos de telemetría.
-- **Sensores de Medición**:
-  - `PZEM-004T V3.0`: Sensor industrial de precisión para el monitoreo en tiempo real de Tensión (V), Corriente (A), Potencia activa (W) y Consumo acumulado (kWh).
   - `DS18B20`: Sensor digital de temperatura interior de alta resolución.
-  - `PIR HC-SR501`: Sensor de presencia infrarojo pasivo de alta sensibilidad.
-- **Mecanismos de Control**: Emisor y receptor infrarrojo (`IR LED / TSOP`) para el control automatizado y emulación de mandos de aires acondicionados.
 
 ### ☁️ 2. Cloud Backend, Ingesta & Data Pipeline (Google Cloud Platform)
 
@@ -221,13 +216,13 @@ El sistema **Wati** ha sido diseñado bajo una arquitectura distribuida y escala
 | Feature | Estado | Notas |
 |---|:---:|---|
 | ESP32-S3 leyendo DS18B20 (temp. interior) | ✅ | Core del firmware |
-| temp_exterior simulada (int + 5°C) | ✅ | Firmware v1.0.7 |
+| ESP32-S3 leyendo DS18B20 (temp. exterior) | ✅ | Firmware v1.0.7 |
 | Cloud Function `ingest-telemetry` recibiendo telemetría | ✅ | Asigna timestamp UTC |
 | Datos escritos en Firestore + BigQuery | ✅ | RT snapshot + histórico |
 | Fallback batch NDJSON a GCS | ✅ | Cuando hay desconexión |
 | ARIMA+ (BigQuery ML) entrenado | ✅ | Forecast temperatura 24–48h |
 | `fetch-weather` consumiendo OpenWeatherMap | ✅ | Cron Cloud Scheduler |
-| Gemini 1.5 Flash generando notificación personalizada | ✅ | Vertex AI |
+| Gemini 1.5 Pro generando notificación personalizada | ✅ | Vertex AI |
 | FCM push notification en celular real | ✅ | Cada 6 horas |
 | OCR de factura CRE (Cloud Vision) | ✅ | < 60s, imagen eliminada |
 | Cloud Run API REST (`/latest`, `/history`) | ✅ | JWT Firebase Auth |
@@ -246,7 +241,7 @@ El sistema **Wati** ha sido diseñado bajo una arquitectura distribuida y escala
 | **Hardware** | $15 - $20 USD (única vez) | Nodo Wati físico |
 | **Premium** | $3 USD/mes | Agentes IA completos, control AC, notificaciones |
 
-**Payback para el usuario: < 3 meses** (ahorro estimado Bs 150–300/mes vs costo Bs 42/mes).
+**Payback para el usuario: < 2 meses** (ahorro estimado Bs 120/mes vs costo Bs 32/mes).
 
 ---
 
